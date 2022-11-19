@@ -2,7 +2,10 @@
  * TODO: Implement a function that clears all the content
  * prior to generating new random content
  */
- function clearAll() {}
+ function clearAll() {
+  const containers = document.querySelector(".content")
+  
+ }
 
  /**
   * TODO:
@@ -11,7 +14,11 @@
   */
  function showMeme() {
    // Value is a string representing image URL
+   const container = document.querySelector(".MemesAqui");
    const randomMemeUrl = getRandomData("memes");
+   const newimg = document.createElement("img");
+   newimg.setAttribute("src",randomMemeUrl);
+   container.appendChild(newimg);
  }
  
  /**
@@ -21,7 +28,11 @@
   */
  function showJoke() {
    // Value is a string representing the joke
+   const container = document.querySelector(".JokesAqui");
    const randomJokeText = getRandomData("jokes");
+   const newjoke = document.createElement("p");
+   newjoke.textContent = randomJokeText;
+   container.appendChild(newjoke);
  }
  
  /**
@@ -30,8 +41,16 @@
   * - Never show more than 1 quote at a time
   */
  function showQuote() {
+  const container = document.querySelector(".WisdomAqui");
    // Value should be in format: { quote: '', author: '' }
    const randomQuote = getRandomData("quotes");
+   const newp = document.createElement("p");
+   const newa = document.createElement("p");
+   newp.textContent = randomQuote.quote;
+   newa.textContent= "- " + randomQuote.author;
+   container.appendChild(newp);
+   container.appendChild(newa);
+
  }
  
  /**
@@ -41,8 +60,12 @@
   * - Always hide the riddle's answer initially
   */
  function showRiddle() {
+  const container = document.querySelector(".riddleAqui");
    // Value should be in format: { question: '', answer: '' }
    const randomRiddle = getRandomData("riddles");
+   const newp = document.createElement("p");
+   newp.textContent = randomRiddle.question;
+   container.appendChild(newp);
  }
  
  /**
