@@ -1,116 +1,92 @@
-/**
- * TODO: Implement a function that clears all the content
- * prior to generating new random content
- */
+
  function clearAll() {
-  const containers = document.querySelector(".content")
-  
+  const meme = document.querySelector(".MemesAqui");
+  const joke = document.querySelector(".JokesAqui");
+  const wisdom = document.querySelector(".WisdomAqui");
+  const riddle = document.querySelector(".riddleAqui");
+  meme.innerHTML = "";
+  joke.innerHTML="";
+  wisdom.innerHTML="";
+  riddle.innerHTML="";
  }
 
- /**
-  * TODO:
-  * - Show a random Meme in the correct location
-  * - Never show more than 1 meme at a time
-  */
+
  function showMeme() {
-   // Value is a string representing image URL
+
    const container = document.querySelector(".MemesAqui");
    const randomMemeUrl = getRandomData("memes");
    const newimg = document.createElement("img");
    newimg.setAttribute("src",randomMemeUrl);
+   clearAll();
    container.appendChild(newimg);
  }
  
- /**
-  * TODO:
-  * - Show a random joke in the correct location
-  * - Never show more than 1 joke at a time
-  */
+
  function showJoke() {
-   // Value is a string representing the joke
+
    const container = document.querySelector(".JokesAqui");
    const randomJokeText = getRandomData("jokes");
    const newjoke = document.createElement("p");
    newjoke.textContent = randomJokeText;
+   clearAll();
    container.appendChild(newjoke);
  }
  
- /**
-  * TODO:
-  * - Show a random quote in the correct location
-  * - Never show more than 1 quote at a time
-  */
+
  function showQuote() {
   const container = document.querySelector(".WisdomAqui");
-   // Value should be in format: { quote: '', author: '' }
+ 
    const randomQuote = getRandomData("quotes");
    const newp = document.createElement("p");
    const newa = document.createElement("p");
    newp.textContent = randomQuote.quote;
    newa.textContent= "- " + randomQuote.author;
+   clearAll();
    container.appendChild(newp);
    container.appendChild(newa);
 
  }
  
- /**
-  * TODO:
-  * - Show a random riddle in the correct location
-  * - Never show more than 1 riddle at a time
-  * - Always hide the riddle's answer initially
-  */
+
  function showRiddle() {
   const container = document.querySelector(".riddleAqui");
-   // Value should be in format: { question: '', answer: '' }
+
    const randomRiddle = getRandomData("riddles");
    const newp = document.createElement("p");
+   const newp2 = document.createElement("p");
    newp.textContent = randomRiddle.question;
+   newp2.textContent ="- "+ randomRiddle.answer;
+   newp2.setAttribute("id","riddleanswer");
+   newp2.hidden = true;
+   clearAll();
    container.appendChild(newp);
+   container.appendChild(newp2);
+
  }
  
- /**
-  * TODO: Unhide the riddle's answer
-  * - If there is no riddle shown, alert the user that there is no riddle
-  * - If there is a riddle shown and an answer shown, alert the user
-  *   that the answer is already revealed
-  * - If there is a riddle shown but no answer, unhide the answer!
-  */
- function revealAnswers() {}
+ function revealAnswers() {
+  const container = document.querySelector(".riddleAqui");
+  const newp = container.querySelector("p");
+  const answer = document.querySelector("#riddleanswer");
+  if (newp && answer.hidden){
+    answer.hidden = false;
+  }
+  else if (newp && answer){
+    alert("already on screen");
+  }
+  else {
+    alert("no riddle to show answer");
+  }
+
+
+ }
  
- /**
-  * This function is used to get random data.  Don't worry about how it works, just know how to use it.  Usage is pre-filled in the functions above already, but here's an explanation of the function anyways.
-  *
-  * Valid arguments:
-  *
-  * 'memes', 'jokes', 'quotes', 'riddles'
-  *
-  * Return values:
-  *
-  * For meme data:
-  * A string representing an image url
-  *
-  * For joke data:
-  * A string representing the joke
-  *
-  * For quote data:
-  * An object - { quote: '', author: '' }
-  *
-  * For riddle data:
-  * An object - { question: '', answer: '' }
-  *
-  * Example usage: getRandomData('quotes');
-  */
+ 
  function getRandomData(type) {
    return data[type][rn(data[type].length)];
  }
  
- // ----------------------------------------------------
- // NO NEED TO CHANGE ANYTHING BELOW but...
- // feel free to add/remove items from these lists to customize
- // your results
- // ----------------------------------------------------
- 
- // Source: https://www.thecoderpedia.com/blog/programming-memes/, Reddit
+
  const memes = [
    "https://i.redd.it/a0v87gwzoge61.jpg",
    "https://i.redd.it/q29egav34ee61.jpg",
@@ -127,7 +103,7 @@
    "https://www.thecoderpedia.com/wp-content/uploads/2020/06/Internet-Explorer-Joke-915x1024.jpg",
  ];
  
- // Sourced from: http://www.devtopics.com/best-programming-jokes/
+
  const jokes = [
    "This statement",
    "Eight bytes walk into a bar.  The bartender asks, “Can I get you anything?” “Yeah,” reply the bytes.  “Make us a double.”",
@@ -141,7 +117,7 @@
    "The best thing about a Boolean is even if you are wrong, you are only off by a bit.",
  ];
  
- // source: https://www.goodreads.com/quotes/tag/programming
+
  const quotes = [
    {
      quote:
@@ -204,7 +180,7 @@
    },
  ];
  
- // Source: https://www.rd.com/list/challenging-riddles/
+
  const riddles = [
    {
      question:
@@ -238,7 +214,7 @@
    },
  ];
  
- // Just a little helper function
+
  function rn(len) {
    return Math.floor(Math.random() * len);
  }
