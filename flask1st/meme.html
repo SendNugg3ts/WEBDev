@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gerador de memes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content="30;url=http://127.0.0.1:5000/" />
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+    <h1>Site de teste para gerar uns memes!</h1>
+    <p>Alto meme este!</p>
+    <p><img src="{{meme_chosen}}" /></p>
+    <p>subreddit usado: {{subreddit}}</p>
+  </body>
+</html>
